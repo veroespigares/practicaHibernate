@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05-mar-2017 0:03:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="programa.Sintoma" table="sintoma" catalog="consulta" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="breveDescripcion" type="string">
+            <column name="breve_descripcion" length="50" not-null="true" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="descripcion" length="100" not-null="true" />
+        </property>
+        <property name="nivelGravedad" type="string">
+            <column name="nivel_gravedad" length="50" not-null="true" />
+        </property>
+        <property name="visible" type="string">
+            <column name="visible" length="5" not-null="true" />
+        </property>
+        <set name="pacientesintomas" table="pacientesintoma" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="id_sintoma" not-null="true" />
+            </key>
+            <one-to-many class="programa.Pacientesintoma" />
+        </set>
+    </class>
+</hibernate-mapping>

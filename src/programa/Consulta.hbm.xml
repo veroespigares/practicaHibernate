@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05-mar-2017 0:03:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="programa.Consulta" table="consulta" catalog="consulta" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="nombre" length="50" not-null="true" />
+        </property>
+        <property name="horario" type="string">
+            <column name="horario" length="50" not-null="true" />
+        </property>
+        <property name="nombreProfesional" type="string">
+            <column name="nombre_profesional" length="50" not-null="true" />
+        </property>
+        <property name="numConsulta" type="string">
+            <column name="num_consulta" length="50" not-null="true" />
+        </property>
+        <property name="visible" type="string">
+            <column name="visible" length="5" not-null="true" />
+        </property>
+        <set name="pacientes" table="paciente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="consulta" not-null="true" />
+            </key>
+            <one-to-many class="programa.Paciente" />
+        </set>
+    </class>
+</hibernate-mapping>
